@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
     android:fitsSystemWindows="false"
-    tools:openDrawer="start">
+    tools:openDrawer="end">
 
     <include
         layout="@layout/layout_dashboard"
@@ -19,7 +19,7 @@
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start">
+        android:layout_gravity="end">
 
         <include
             layout="@layout/layout_side_menu"

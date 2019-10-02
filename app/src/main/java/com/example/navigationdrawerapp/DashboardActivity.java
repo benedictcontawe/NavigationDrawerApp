@@ -3,6 +3,7 @@ package com.example.navigationdrawerapp;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,6 +30,8 @@ public class DashboardActivity extends Activity implements View.OnClickListener 
     private void onSetNavigationDrawerEvents() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         navigationView = (NavigationView) findViewById(R.id.navigationView);
+
+        drawerLayout.openDrawer(GravityCompat.END);
 
         navigationBar = (ImageView) findViewById(R.id.navigationBar);
         ll_First = (LinearLayout) findViewById(R.id.ll_First);
