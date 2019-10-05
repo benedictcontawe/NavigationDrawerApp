@@ -31,8 +31,6 @@ public class DashboardActivity extends Activity implements View.OnClickListener 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         navigationView = (NavigationView) findViewById(R.id.navigationView);
 
-        drawerLayout.openDrawer(GravityCompat.END);
-
         navigationBar = (ImageView) findViewById(R.id.navigationBar);
         ll_First = (LinearLayout) findViewById(R.id.ll_First);
         ll_Second = (LinearLayout) findViewById(R.id.ll_Second);
