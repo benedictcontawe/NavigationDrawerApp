@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
@@ -31,4 +33,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     //circular image view (de.hdodenhof.circleimageview.CircleImageView)
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    compile "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
