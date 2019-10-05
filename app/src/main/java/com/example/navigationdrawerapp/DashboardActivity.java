@@ -2,9 +2,9 @@ package com.example.navigationdrawerapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
