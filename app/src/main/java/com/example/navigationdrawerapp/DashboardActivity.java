@@ -3,7 +3,7 @@ package com.example.navigationdrawerapp;
 import android.app.Activity;
 import android.os.Bundle;
 import com.google.android.material.navigation.NavigationView;
-import androidx.core.view.GravityCompat;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,7 +15,7 @@ public class DashboardActivity extends Activity implements View.OnClickListener 
 
     DrawerLayout drawerLayout;
     ImageView navigationBar,iv_logout;
-    LinearLayout ll_First,ll_Second,ll_Third,ll_Fourth,ll_Fifth,ll_Sixth,ll_Seveth;
+    LinearLayout ll_First,ll_Second,ll_Third,ll_Fourth,ll_Fifth,ll_Sixth,ll_Seventh;
     NavigationView navigationView;
     TextView tv_logout;
 
@@ -38,7 +38,7 @@ public class DashboardActivity extends Activity implements View.OnClickListener 
         ll_Fourth = (LinearLayout) findViewById(R.id.ll_Fourth);
         ll_Fifth = (LinearLayout) findViewById(R.id.ll_Fifth);
         ll_Sixth = (LinearLayout) findViewById(R.id.ll_Sixth);
-        ll_Seveth = (LinearLayout) findViewById(R.id.ll_Seveth);
+        ll_Seventh = (LinearLayout) findViewById(R.id.ll_Seventh);
 
         iv_logout = (ImageView) findViewById(R.id.iv_logout);
         tv_logout = (TextView) findViewById(R.id.tv_logout);
@@ -50,7 +50,7 @@ public class DashboardActivity extends Activity implements View.OnClickListener 
         ll_Fourth.setOnClickListener(this);
         ll_Fifth.setOnClickListener(this);
         ll_Sixth.setOnClickListener(this);
-        ll_Seveth.setOnClickListener(this);
+        ll_Seventh.setOnClickListener(this);
         iv_logout.setOnClickListener(this);
         tv_logout.setOnClickListener(this);
     }
@@ -85,8 +85,8 @@ public class DashboardActivity extends Activity implements View.OnClickListener 
                 showToast("ll_Sixth");
                 drawerLayout.closeDrawer(navigationView, true);
                 break;
-            case R.id.ll_Seveth:
-                showToast("ll_Seveth");
+            case R.id.ll_Seventh:
+                showToast("ll_Seventh");
                 drawerLayout.closeDrawer(navigationView, true);
                 break;
             case R.id.iv_logout:
