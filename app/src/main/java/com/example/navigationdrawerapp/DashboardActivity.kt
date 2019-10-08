@@ -26,7 +26,7 @@ class DashboardActivity : Activity(), View.OnClickListener {
         ll_Fourth.setOnClickListener(this)
         ll_Fifth.setOnClickListener(this)
         ll_Sixth.setOnClickListener(this)
-        ll_Seveth.setOnClickListener(this)
+        ll_Seventh.setOnClickListener(this)
         iv_logout.setOnClickListener(this)
         tv_logout.setOnClickListener(this)
     }
@@ -60,8 +60,8 @@ class DashboardActivity : Activity(), View.OnClickListener {
                 showToast("ll_Sixth")
                 drawerLayout.closeDrawer(navigationView, true)
             }
-            R.id.ll_Seveth -> {
-                showToast("ll_Seveth")
+            R.id.ll_Seventh -> {
+                showToast("ll_Seventh")
                 drawerLayout.closeDrawer(navigationView, true)
             }
             R.id.iv_logout -> {
