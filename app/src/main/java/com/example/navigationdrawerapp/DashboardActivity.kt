@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import com.example.navigationdrawerapp.databinding.MainBinder
 
