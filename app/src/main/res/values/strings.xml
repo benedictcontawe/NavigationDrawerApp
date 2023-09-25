@@ -2,6 +2,7 @@
     <string name="app_name">NavigationDrawerApp</string>
     <string name="logout">Logout</string>
     <string name="logout_image">Logout Image</string>
+    <string name="navigation_bar">Navigation Bar</string>
     <string name="profile_image">Profile Image</string>
     <string name="star">Star</string>
 </resources>
