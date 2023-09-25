@@ -1,109 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#00539f"
-        app:layout_constraintDimensionRatio="2:1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/margin_start_percentage"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/margin_end_percentage"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/margin_top_percentage"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_image_bottom"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.659136546184739" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_text_bottom"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.840863453815261" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_dashboardHeader_profilePicture"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:contentDescription="Profile Image"
-            android:src="@mipmap/ic_launcher_round"
-            app:civ_border_color="#FFF"
-            app:civ_border_width="1dp"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintTop_toTopOf="@id/margin_top_percentage"
-            app:layout_constraintStart_toStartOf="@id/margin_start_percentage"
-            app:layout_constraintBottom_toBottomOf="@id/gl_image_bottom"/>
+            android:background="#00539f"
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/tv_dashboardHeader_profileName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:textColor="#FFF"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="@id/margin_start_percentage"
-            app:layout_constraintBottom_toBottomOf="@id/gl_text_bottom"
-            tools:text="Joanna Smith"/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/margin_start_percentage"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
 
-        <ImageView
-            android:id="@+id/iv_logout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="Logout Image"
-            android:src="@drawable/ic_logout_white"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintTop_toTopOf="@+id/tv_dashboardHeader_profileName"
-            app:layout_constraintEnd_toStartOf="@id/tv_logout"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_dashboardHeader_profileName" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/margin_end_percentage"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
 
-        <TextView
-            android:id="@+id/tv_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textColor="#FFF"
-            android:textSize="15sp"
-            android:text="Logout"
-            app:layout_constraintEnd_toEndOf="@id/margin_end_percentage"
-            app:layout_constraintBottom_toBottomOf="@id/gl_text_bottom"/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/margin_top_percentage"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_image_bottom"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.659136546184739" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_text_bottom"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.840863453815261" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_view_dashboardHeader_profilePicture"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/profile_image"
+                android:src="@mipmap/ic_launcher_round"
+                app:civ_border_color="#FFF"
+                app:civ_border_width="1dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@id/margin_top_percentage"
+                app:layout_constraintStart_toStartOf="@id/margin_start_percentage"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_image_bottom"/>
+
+            <TextView
+                android:id="@+id/text_view_dashboard_header_profileName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:textColor="#FFF"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="@id/margin_start_percentage"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_text_bottom"
+                tools:text="Joanna Smith"/>
+
+            <ImageView
+                android:id="@+id/image_view_logout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@string/logout_image"
+                android:src="@drawable/ic_logout_white"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/text_view_dashboard_header_profileName"
+                app:layout_constraintEnd_toStartOf="@id/text_view_logout"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_dashboard_header_profileName" />
+
+            <TextView
+                android:id="@+id/text_view_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="#FFF"
+                android:textSize="15sp"
+                android:text="@string/logout"
+                app:layout_constraintEnd_toEndOf="@id/margin_end_percentage"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_text_bottom"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

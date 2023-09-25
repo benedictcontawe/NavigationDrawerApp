@@ -1,91 +1,110 @@
 package com.example.navigationdrawerapp
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.header_menu.*
-import kotlinx.android.synthetic.main.layout_dashboard.*
-import kotlinx.android.synthetic.main.layout_side_menu.*
+import androidx.activity.OnBackPressedCallback
+import androidx.core.view.GravityCompat
+import androidx.databinding.DataBindingUtil
+import com.example.navigationdrawerapp.databinding.MainBinder
 
-class DashboardActivity : Activity(), View.OnClickListener {
+class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    companion object {
+        private val TAG = DashboardActivity::class.java.getSimpleName()
+    }
+
+    private var binder : MainBinder? = null
+
+    override fun onCreate(savedInstanceState : Bundle?) {
+        binder = DataBindingUtil.setContentView(this@DashboardActivity, R.layout.activity_dashboard)
+        binder?.setLifecycleOwner(this@DashboardActivity)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
-
         onSetNavigationDrawerEvents()
+        getOnBackPressedDispatcher().addCallback(this@DashboardActivity, getHandleOnBackPressed())
     }
 
     private fun onSetNavigationDrawerEvents() {
-        navigationBar.setOnClickListener(this)
-        ll_First.setOnClickListener(this)
-        ll_Second.setOnClickListener(this)
-        ll_Third.setOnClickListener(this)
-        ll_Fourth.setOnClickListener(this)
-        ll_Fifth.setOnClickListener(this)
-        ll_Sixth.setOnClickListener(this)
-        ll_Seventh.setOnClickListener(this)
-        iv_logout.setOnClickListener(this)
-        tv_logout.setOnClickListener(this)
+        //binder?.drawerLayout?.openDrawer(GravityCompat.END)
+        binder?.layoutDashboard?.navigationBar?.setOnClickListener(this)
+        binder?.layoutSideMenu?.linearLayoutFirst?.setOnClickListener(this)
+        binder?.layoutSideMenu?.linearLayoutSecond?.setOnClickListener(this)
+        binder?.layoutSideMenu?.linearLayoutThird?.setOnClickListener(this)
+        binder?.layoutSideMenu?.linearLayoutFourth?.setOnClickListener(this)
+        binder?.layoutSideMenu?.linearLayoutFifth?.setOnClickListener(this)
+        binder?.layoutSideMenu?.linearLayoutSixth?.setOnClickListener(this)
+        binder?.layoutSideMenu?.linearLayoutSeventh?.setOnClickListener(this)
+        binder?.layoutSideMenu?.headerDashboard?.imageViewLogout?.setOnClickListener(this)
+        binder?.layoutSideMenu?.headerDashboard?.textViewLogout?.setOnClickListener(this)
     }
 
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.navigationBar -> {
-                drawerLayout.openDrawer(navigationView, true)
+    override fun onClick(view : View) {
+        when (view.id) {
+            R.id.navigation_bar -> binder?.drawerLayout?.openDrawer(binder?.navigationView!!, true)
+            R.id.linear_layout_First -> {
+                showToast("linear_layout_First")
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
-            R.id.ll_First -> {
-                showToast("ll_First")
-                drawerLayout.closeDrawer(navigationView, true)
+            R.id.linear_layout_Second -> {
+                showToast("linear_layout_Second")
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
-            R.id.ll_Second -> {
-                showToast("ll_Second")
-                drawerLayout.closeDrawer(navigationView, true)
+            R.id.linear_layout_Third -> {
+                showToast("linear_layout_Third")
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
-            R.id.ll_Third -> {
-                showToast("ll_Third")
-                drawerLayout.closeDrawer(navigationView, true)
+            R.id.linear_layout_Fourth -> {
+                showToast("linear_layout_Fourth")
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
-            R.id.ll_Fourth -> {
-                showToast("ll_Fourth")
-                drawerLayout.closeDrawer(navigationView, true)
+            R.id.linear_layout_Fifth -> {
+                showToast("linear_layout_Fifth")
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
-            R.id.ll_Fifth -> {
-                showToast("ll_Fifth")
-                drawerLayout.closeDrawer(navigationView, true)
+            R.id.linear_layout_Sixth -> {
+                showToast("linear_layout_Sixth")
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
-            R.id.ll_Sixth -> {
-                showToast("ll_Sixth")
-                drawerLayout.closeDrawer(navigationView, true)
+            R.id.linear_layout_Seventh -> {
+                showToast("linear_layout_Seventh")
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
-            R.id.ll_Seventh -> {
-                showToast("ll_Seventh")
-                drawerLayout.closeDrawer(navigationView, true)
-            }
-            R.id.iv_logout -> {
+            R.id.image_view_logout -> {
                 showToast("iv_logout")
-                drawerLayout.closeDrawer(navigationView, true)
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
-            R.id.tv_logout -> {
+            R.id.text_view_logout -> {
                 showToast("tv_logout")
-                drawerLayout.closeDrawer(navigationView, true)
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
             else -> {
                 showToast("Default")
-                drawerLayout.closeDrawer(navigationView, true)
+                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
             }
         }
     }
 
     private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@DashboardActivity, message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun getHandleOnBackPressed() : OnBackPressedCallback {
+        return object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (binder?.drawerLayout?.isDrawerOpen(binder?.navigationView!!) == true) {
+                    binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
+                } else {
+                    finish()
+                }
+            }
+        }
+    }
+
+    @Deprecated("Deprecated in Java", ReplaceWith("Use this method getHandleOnBackPressed"), DeprecationLevel.WARNING)
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(navigationView)) {
-            drawerLayout.closeDrawer(navigationView, true)
+        if (binder?.drawerLayout?.isDrawerOpen(binder?.navigationView!!) == true) {
+            binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
         } else {
             super.onBackPressed()
         }

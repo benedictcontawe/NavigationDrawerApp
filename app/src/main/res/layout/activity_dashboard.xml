@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/drawerLayout"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="end">
+    xmlns:tools="http://schemas.android.com/tools" >
 
-    <include
-        layout="@layout/layout_dashboard"
-        android:id="@+id/layout_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <data class="MainBinder" />
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationView"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="end">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:openDrawer="end" >
 
         <include
-            layout="@layout/layout_side_menu"
-            android:id="@+id/layout_side_menu"
+            layout="@layout/layout_dashboard"
+            android:id="@+id/layout_dashboard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
-    </com.google.android.material.navigation.NavigationView>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end">
 
-</androidx.drawerlayout.widget.DrawerLayout>
+            <include
+                layout="@layout/layout_side_menu"
+                android:id="@+id/layout_side_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>
