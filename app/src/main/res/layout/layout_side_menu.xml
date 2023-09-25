@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,237 +37,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <LinearLayout
-                android:id="@+id/linear_layout_menu"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="start|center"
-                android:orientation="vertical"
+                tools:listitem="@layout/cell_content"
+                tools:itemCount="13"
                 app:layout_constraintTop_toBottomOf="@id/header_dashboard"
                 app:layout_constraintStart_toStartOf="@id/guideline_hamburger_start"
-                app:layout_constraintEnd_toEndOf="@id/guideline_hamburger_end">
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_First"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="start|center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:contentDescription="@string/first_image"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_star_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/first"
-                        android:textSize="15sp"
-                        />
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="start|center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/title"
-                        android:textSize="30sp"
-                        />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_Second"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="start|center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:contentDescription="@string/second_image"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_star_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/second"
-                        android:textSize="15sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_Third"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="start|center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:contentDescription="@string/third_image"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_star_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/third"
-                        android:textSize="15sp"
-                        />
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="start|center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/title"
-                        android:textSize="30sp"
-                        />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_Fourth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="start|center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:contentDescription="@string/fourth_image"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_star_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/fourth"
-                        android:textSize="15sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_Fifth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="start|center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:contentDescription="@string/fifth_image"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_star_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/fifth"
-                        android:textSize="15sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_Sixth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="start|center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:contentDescription="@string/sixth_image"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_star_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sixth"
-                        android:textSize="15sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_Seventh"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="start|center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:contentDescription="@string/seventh_image"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_star_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/seventh"
-                        android:textSize="15sp"
-                        />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                app:layout_constraintEnd_toEndOf="@id/guideline_hamburger_end" />
 
             <Space
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintDimensionRatio="1:0.10"
-                app:layout_constraintTop_toBottomOf="@id/linear_layout_menu"
+                app:layout_constraintTop_toBottomOf="@id/recycler_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>

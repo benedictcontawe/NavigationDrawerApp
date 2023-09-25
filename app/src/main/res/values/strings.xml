@@ -1,22 +1,7 @@
 <resources>
     <string name="app_name">NavigationDrawerApp</string>
-    <string name="first">First</string>
-    <string name="first_image">First Image</string>
-    <string name="fourth">Fourth</string>
-    <string name="fourth_image">Fourth Image</string>
-    <string name="fifth">Fifth</string>
-    <string name="fifth_image">Fifth Image</string>
     <string name="logout">Logout</string>
     <string name="logout_image">Logout Image</string>
-    <string name="navigation_bar">Navigation Bar</string>
     <string name="profile_image">Profile Image</string>
-    <string name="second_image">Second Image</string>
-    <string name="second">Second</string>
-    <string name="seventh">Seveth</string>
-    <string name="seventh_image">Seventh Image</string>
-    <string name="sixth">Sixth</string>
-    <string name="sixth_image">Sixth Image</string>
-    <string name="third">Third</string>
-    <string name="third_image">Third Image</string>
-    <string name="title">Title</string>
+    <string name="star">Star</string>
 </resources>

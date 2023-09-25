@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import com.example.navigationdrawerapp.databinding.MainBinder
 
@@ -26,15 +25,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun onSetNavigationDrawerEvents() {
-        //drawerLayout.openDrawer(GravityCompat.START)
         binder?.layoutDashboard?.navigationBar?.setOnClickListener(this)
-        binder?.layoutSideMenu?.linearLayoutFirst?.setOnClickListener(this)
-        binder?.layoutSideMenu?.linearLayoutSecond?.setOnClickListener(this)
-        binder?.layoutSideMenu?.linearLayoutThird?.setOnClickListener(this)
-        binder?.layoutSideMenu?.linearLayoutFourth?.setOnClickListener(this)
-        binder?.layoutSideMenu?.linearLayoutFifth?.setOnClickListener(this)
-        binder?.layoutSideMenu?.linearLayoutSixth?.setOnClickListener(this)
-        binder?.layoutSideMenu?.linearLayoutSeventh?.setOnClickListener(this)
         binder?.layoutSideMenu?.headerDashboard?.imageViewLogout?.setOnClickListener(this)
         binder?.layoutSideMenu?.headerDashboard?.textViewLogout?.setOnClickListener(this)
     }
@@ -42,34 +33,6 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view : View) {
         when (view.id) {
             R.id.navigation_bar -> binder?.drawerLayout?.openDrawer(binder?.navigationView!!, true)
-            R.id.linear_layout_First -> {
-                showToast("linear_layout_First")
-                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
-            }
-            R.id.linear_layout_Second -> {
-                showToast("linear_layout_Second")
-                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
-            }
-            R.id.linear_layout_Third -> {
-                showToast("linear_layout_Third")
-                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
-            }
-            R.id.linear_layout_Fourth -> {
-                showToast("linear_layout_Fourth")
-                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
-            }
-            R.id.linear_layout_Fifth -> {
-                showToast("linear_layout_Fifth")
-                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
-            }
-            R.id.linear_layout_Sixth -> {
-                showToast("linear_layout_Sixth")
-                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
-            }
-            R.id.linear_layout_Seventh -> {
-                showToast("linear_layout_Seventh")
-                binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
-            }
             R.id.image_view_logout -> {
                 showToast("iv_logout")
                 binder?.drawerLayout?.closeDrawer(binder?.navigationView!!, true)
