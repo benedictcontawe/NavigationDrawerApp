@@ -14,14 +14,14 @@
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_hamburger_start"
+                android:id="@+id/guideline_hamburger_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.05" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_hamburger_end"
+                android:id="@+id/guideline_hamburger_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -43,8 +43,8 @@
                 android:gravity="start|center"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/header_dashboard"
-                app:layout_constraintStart_toStartOf="@id/gl_hamburger_start"
-                app:layout_constraintEnd_toEndOf="@id/gl_hamburger_end">
+                app:layout_constraintStart_toStartOf="@id/guideline_hamburger_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_hamburger_end">
 
                 <LinearLayout
                     android:id="@+id/linear_layout_First"

@@ -42,21 +42,21 @@
                 app:layout_constraintGuide_percent="0.25" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_image_bottom"
+                android:id="@+id/guideline_image_bottom"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.659136546184739" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_text_bottom"
+                android:id="@+id/guideline_text_bottom"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.840863453815261" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_dashboardHeader_profilePicture"
+                android:id="@+id/image_view_dashboardHeader_profilePicture"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:contentDescription="@string/profile_image"
@@ -66,10 +66,10 @@
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintTop_toTopOf="@id/margin_top_percentage"
                 app:layout_constraintStart_toStartOf="@id/margin_start_percentage"
-                app:layout_constraintBottom_toBottomOf="@id/gl_image_bottom"/>
+                app:layout_constraintBottom_toBottomOf="@id/guideline_image_bottom"/>
 
             <TextView
-                android:id="@+id/tv_dashboardHeader_profileName"
+                android:id="@+id/text_view_dashboard_header_profileName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -77,7 +77,7 @@
                 android:textColor="#FFF"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="@id/margin_start_percentage"
-                app:layout_constraintBottom_toBottomOf="@id/gl_text_bottom"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_text_bottom"
                 tools:text="Joanna Smith"/>
 
             <ImageView
@@ -89,9 +89,9 @@
                 android:contentDescription="@string/logout_image"
                 android:src="@drawable/ic_logout_white"
                 app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="@+id/tv_dashboardHeader_profileName"
+                app:layout_constraintTop_toTopOf="@+id/text_view_dashboard_header_profileName"
                 app:layout_constraintEnd_toStartOf="@id/text_view_logout"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_dashboardHeader_profileName" />
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_dashboard_header_profileName" />
 
             <TextView
                 android:id="@+id/text_view_logout"
@@ -104,7 +104,7 @@
                 android:textSize="15sp"
                 android:text="@string/logout"
                 app:layout_constraintEnd_toEndOf="@id/margin_end_percentage"
-                app:layout_constraintBottom_toBottomOf="@id/gl_text_bottom"/>
+                app:layout_constraintBottom_toBottomOf="@id/guideline_text_bottom"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
