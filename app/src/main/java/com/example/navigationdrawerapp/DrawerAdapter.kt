@@ -43,19 +43,25 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
     }
 
     override fun onBindViewHolder(holder : BaseViewHolder, position : Int) {
-
+        holder.bindDataToViewHolder(list.get(position), position)
     }
 
     override fun getItemCount() : Int {
         return list.size
     }
 
-    override fun getItemViewType(position: Int) : Int {
+    override fun getItemViewType(position : Int) : Int {
         return when(list[position].isHeader) {
             true -> { HeaderView }
             false -> { ContentView }
             else -> { super.getItemViewType(position) }
         }
+    }
+
+    public fun setItems(items : List<DrawerModel>) {
+        list.clear()
+        list.addAll(items)
+        notifyDataSetChanged()
     }
 
     public fun setExpand(model : DrawerModel, position : Int) {

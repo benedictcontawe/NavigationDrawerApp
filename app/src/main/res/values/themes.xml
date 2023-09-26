@@ -10,9 +10,27 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-<!--        <item name="android:statusBarColor" tools:targetApi="21">?attr/colorPrimaryVariant</item>-->
+        <!--<item name="android:statusBarColor" tools:targetApi="21">?attr/colorPrimaryVariant</item>-->
         <!-- Customize your theme here. -->
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+    <style name="LineColor" >
+        <item name="android:background">@color/blue</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+    <style name="NavigationBar" >
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="srcCompat">@drawable/ic_navigation_bar_black</item>
+    </style>
+    <style name="ConstraintLayout">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

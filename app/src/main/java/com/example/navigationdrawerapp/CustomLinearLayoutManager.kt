@@ -11,21 +11,25 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CustomLinearLayoutManager : LinearLayoutManager {
 
-    constructor(context : Context) : super(context){
+    companion object {
+        private val TAG = CustomLinearLayoutManager::class.java.getSimpleName()
+    }
+
+    constructor(context : Context) : super(context) {
 
     }
 
-    constructor(context : Context, orientation : Int, reverseLayout : Boolean) : super(context, orientation, reverseLayout){
+    constructor(context : Context, orientation : Int, reverseLayout : Boolean) : super(context, orientation, reverseLayout) {
 
     }
 
-    constructor(context : Context, attrs : AttributeSet, defStyleAttr : Int, defStyleRes : Int) : super(context, attrs, defStyleAttr, defStyleRes){
+    constructor(context : Context, attrs : AttributeSet, defStyleAttr : Int, defStyleRes : Int) : super(context, attrs, defStyleAttr, defStyleRes) {
 
     }
 
     override fun smoothScrollToPosition(recyclerView: RecyclerView, state: RecyclerView.State, position: Int) {
         //super.smoothScrollToPosition(recyclerView, state, position)
-        Log.d(CustomLinearLayoutManager::class.java.getSimpleName(), "smoothScrollToPosition()")
+        Log.d(TAG, "smoothScrollToPosition()")
         val linearSmoothScroller = object : LinearSmoothScroller(recyclerView.getContext()) {
             private val MILLISECONDS_PER_INCH = 500f
             private val DISTANCE_IN_PIXELS = 500f

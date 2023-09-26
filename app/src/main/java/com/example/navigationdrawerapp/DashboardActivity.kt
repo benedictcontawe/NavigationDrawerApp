@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.navigationdrawerapp.databinding.DashboardBinder
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener, DrawerListener {
@@ -16,10 +17,12 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener, DrawerListe
     }
 
     private var binder : DashboardBinder? = null
+    private val viewModel : DashboardViewModel by lazy { ViewModelProvider(this@DashboardActivity).get(DashboardViewModel::class.java) }
     private var adapter : DrawerAdapter? = null
 
     override fun onCreate(savedInstanceState : Bundle?) {
         binder = DataBindingUtil.setContentView(this@DashboardActivity, R.layout.activity_dashboard)
+        binder?.setViewModel(viewModel)
         binder?.setLifecycleOwner(this@DashboardActivity)
         super.onCreate(savedInstanceState)
         onSetNavigationDrawerEvents()
@@ -59,6 +62,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener, DrawerListe
             }
         })
         */
+        adapter?.setItems(viewModel.getList())
     }
 
     override fun onClick(view : View) {

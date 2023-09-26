@@ -26,6 +26,7 @@ class HeaderViewHolder : BaseViewHolder {
         //region Input Data
         binder.setHolder(model)
         binder.setPosition(position)
+        binder.executePendingBindings()
         binder.textView.setText(model.text)
         if (model.isExpand) {
             binder.imageView.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_expand_less))

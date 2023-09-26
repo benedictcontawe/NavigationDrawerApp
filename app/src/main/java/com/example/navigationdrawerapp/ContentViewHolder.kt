@@ -1,5 +1,6 @@
 package com.example.navigationdrawerapp
 
+import android.util.Log
 import android.view.View
 import com.example.navigationdrawerapp.databinding.ContentBinder
 
@@ -25,6 +26,7 @@ class ContentViewHolder : BaseViewHolder {
         //region Input Data
         binder.setHolder(model)
         binder.setPosition(position)
+        binder.executePendingBindings()
         binder.textView.setText(model.text)
         //endregion
         //region Set Listener
