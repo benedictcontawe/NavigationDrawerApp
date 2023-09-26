@@ -1,6 +1,5 @@
 package com.example.navigationdrawerapp
 
-import android.util.Log
 import android.view.View
 import com.example.navigationdrawerapp.databinding.ContentBinder
 

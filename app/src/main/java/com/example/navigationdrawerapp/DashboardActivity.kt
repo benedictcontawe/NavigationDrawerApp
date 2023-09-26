@@ -88,16 +88,14 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener, DrawerListe
     }
 
     override fun onClick(model : DrawerModel, position : Int) {
-        showToast("onClick $model $position")
+        showToast("onClick ${model.text}")
     }
 
     override fun onExpand(model : DrawerModel, position : Int) {
-        showToast("onExpand $model $position")
         adapter?.setExpand(model, position)
     }
 
     override fun onCompress(model : DrawerModel, position : Int) {
-        showToast("onCompress $model $position")
         adapter?.setCompress(model, position)
     }
 

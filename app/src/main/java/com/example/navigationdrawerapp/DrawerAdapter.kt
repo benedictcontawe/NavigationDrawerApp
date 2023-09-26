@@ -1,9 +1,11 @@
 package com.example.navigationdrawerapp
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.navigationdrawerapp.databinding.CollapseBinder
 import com.example.navigationdrawerapp.databinding.ContentBinder
 import com.example.navigationdrawerapp.databinding.HeaderBinder
 
@@ -13,6 +15,7 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
         private val TAG = DrawerAdapter::class.java.getSimpleName()
         private const val HeaderView = 0
         private const val ContentView = 1
+        private const val CollapseView = 3
     }
 
     private val listener : DrawerListener
@@ -29,15 +32,17 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
                 val binder : HeaderBinder = DataBindingUtil.inflate(layoutInflater, R.layout.cell_header, parent, false)
                 HeaderViewHolder(binder, listener)
             }
-
             ContentView -> {
                 val binder : ContentBinder = DataBindingUtil.inflate(layoutInflater, R.layout.cell_content, parent, false)
                 ContentViewHolder(binder, listener)
             }
-
+            CollapseView -> {
+                val binder : CollapseBinder = DataBindingUtil.inflate(layoutInflater, R.layout.cell_collapse, parent, false)
+                CollapseViewHolder(binder, listener)
+            }
             else -> {
-                val binder : ContentBinder = DataBindingUtil.inflate(layoutInflater, R.layout.cell_content, parent, false)
-                ContentViewHolder(binder, listener)
+                val binder : CollapseBinder = DataBindingUtil.inflate(layoutInflater, R.layout.cell_collapse, parent, false)
+                CollapseViewHolder(binder, listener)
             }
         }
     }
@@ -51,10 +56,14 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
     }
 
     override fun getItemViewType(position : Int) : Int {
-        return when(list[position].isHeader) {
-            true -> { HeaderView }
-            false -> { ContentView }
-            else -> { super.getItemViewType(position) }
+        return if (list[position].isHeader) {
+            HeaderView
+        } else if (!list[position].isHeader && list[position].isExpand) {
+            ContentView
+        } else if (!list[position].isHeader && !list[position].isExpand) {
+            CollapseView
+        } else {
+            super.getItemViewType(position)
         }
     }
 
@@ -64,11 +73,37 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
         notifyDataSetChanged()
     }
 
-    public fun setExpand(model : DrawerModel, position : Int) {
+    public fun getItem(position : Int) : DrawerModel {
+        return list.get(position)
+    }
 
+    override fun getItemId(position : Int) : Long {
+        return super.getItemId(position)
+    }
+
+    public fun setExpand(model : DrawerModel, position : Int) {
+        for (index in position ..< getItemCount()) {
+            if (getItem(index).isHeader && index != position) {
+                break
+            } else {
+                Log.d(TAG,"setExpand ${getItem(index)}")
+                getItem(index).isExpand = true
+                notifyItemChanged(index)
+            }
+        }
+        //notifyItemRangeChanged(position, getItemCount())
     }
 
     public fun setCompress(model : DrawerModel, position : Int) {
-
+        for (index in position ..< getItemCount()) {
+            if (getItem(index).isHeader && index != position) {
+                break
+            } else {
+                Log.d(TAG,"setCompress ${getItem(index)}")
+                getItem(index).isExpand = false
+                notifyItemChanged(index)
+            }
+        }
+        //notifyItemRangeChanged(position, getItemCount())
     }
 }

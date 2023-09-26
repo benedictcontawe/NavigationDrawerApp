@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <data class="CollapseBinder">
+        <variable
+            name="holder"
+            type="com.example.navigationdrawerapp.DrawerModel" />
+        <variable
+            name="position"
+            type="int" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
+        android:layout_height="0dp"
+        style="@style/ConstraintLayout" >
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="0:0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <!--region Guide lines-->
+        <!--region Vertical Guide lines-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/constraint_guideline_marginStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/constraint_guideline_marginEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90"/>
+        <!--endregion-->
+        <!--region Horizontal Guidlines-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/constraint_guideline_marginTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.10"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/constraint_guideline_marginBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.90"/>
+        <!--endregion-->
+        <!--endregion-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/star"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_star_blue"
+            app:layout_constraintTop_toTopOf="@id/constraint_guideline_marginTop"
+            app:layout_constraintStart_toStartOf="@id/constraint_guideline_marginStart"
+            app:layout_constraintBottom_toBottomOf="@id/constraint_guideline_marginBottom"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="[content]"
+            android:textSize="15sp"
+            style="@style/TextStyle"
+            app:layout_constraintTop_toTopOf="@id/constraint_guideline_marginTop"
+            app:layout_constraintStart_toStartOf="@id/constraint_guideline_marginStart"
+            app:layout_constraintEnd_toEndOf="@id/constraint_guideline_marginEnd"
+            app:layout_constraintBottom_toBottomOf="@id/constraint_guideline_marginBottom" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
