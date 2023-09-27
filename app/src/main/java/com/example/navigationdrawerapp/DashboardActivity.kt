@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.navigationdrawerapp.databinding.DashboardBinder
@@ -62,6 +63,12 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener, DrawerListe
             }
         })
         */
+        binder?.layoutSideMenu?.recyclerView?.addItemDecoration (
+            DividerItemDecoration (
+                ContextCompat.getColor(getBaseContext(),R.color.purple_500),
+                1
+            )
+        )
         adapter?.setItems(viewModel.getList())
     }
 
