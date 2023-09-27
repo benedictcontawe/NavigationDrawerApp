@@ -29,9 +29,9 @@ class HeaderViewHolder : BaseViewHolder {
         binder.executePendingBindings()
         binder.textView.setText(model.text)
         if (model.isExpand) {
-            binder.imageView.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_expand_less))
+            binder.imageView.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_collapse))
         } else {
-            binder.imageView.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_expand_more))
+            binder.imageView.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_expand))
         }
         //endregion
         //region Set Listener
