@@ -1,6 +1,5 @@
 package com.example.navigationdrawerapp
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -85,10 +84,11 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
         for (index in position ..< getItemCount()) {
             if (getItem(index).isHeader && index != position) {
                 break
-            } else {
-                Log.d(TAG,"setExpand ${getItem(index)}")
+            } else if (!getItem(index).isHeader) {
                 getItem(index).isExpand = true
                 notifyItemChanged(index)
+            } else {
+                getItem(index).isExpand = true
             }
         }
         //notifyItemRangeChanged(position, getItemCount())
@@ -98,10 +98,11 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
         for (index in position ..< getItemCount()) {
             if (getItem(index).isHeader && index != position) {
                 break
-            } else {
-                Log.d(TAG,"setCompress ${getItem(index)}")
+            } else if (!getItem(index).isHeader) {
                 getItem(index).isExpand = false
                 notifyItemChanged(index)
+            } else {
+                getItem(index).isExpand = false
             }
         }
         //notifyItemRangeChanged(position, getItemCount())
