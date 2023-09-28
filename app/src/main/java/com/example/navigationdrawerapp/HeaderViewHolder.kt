@@ -4,6 +4,11 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -33,11 +38,7 @@ class HeaderViewHolder : BaseViewHolder {
         binder.setPosition(position)
         binder.executePendingBindings()
         binder.textView.setText(model.text)
-        if (model.isExpand) {
-            binder.imageView.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_collapse))
-        } else {
-            binder.imageView.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_expand))
-        }
+        initializeImage()
         //endregion
         //region Set Listener
         binder.constraintLayout.setOnClickListener(object : View.OnClickListener {
@@ -52,6 +53,24 @@ class HeaderViewHolder : BaseViewHolder {
             }
         } )
         //endregion
+    }
+
+    private fun initializeImage() {
+        val drawable : Drawable?
+        if (binder.getHolder().isExpand && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_collapse)
+            drawable?.setColorFilter (BlendModeColorFilter(binder.textView.getCurrentTextColor(), BlendMode.SRC_ATOP))
+        } else if (binder.getHolder().isExpand) {
+            drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_collapse)
+            drawable?.setColorFilter(binder.textView.getCurrentTextColor(), PorterDuff.Mode.SRC_ATOP)
+        } else if (binder.getHolder().isExpand.not() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_expand)
+            drawable?.setColorFilter (BlendModeColorFilter(binder.textView.getCurrentTextColor(), BlendMode.SRC_ATOP))
+        } else {
+            drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_expand)
+            drawable?.setColorFilter(binder.textView.getCurrentTextColor(), PorterDuff.Mode.SRC_ATOP)
+        }
+        binder.imageView.setImageDrawable(drawable)
     }
 
     private fun animateDown() {

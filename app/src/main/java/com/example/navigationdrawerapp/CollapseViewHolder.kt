@@ -22,7 +22,7 @@ class CollapseViewHolder : BaseViewHolder {
         binder.setHolder(model)
         binder.setPosition(position)
         binder.executePendingBindings()
-        binder.textView.setText(model.text)
+        //binder.textView.setText(model.text)
         //endregion
     }
 }
