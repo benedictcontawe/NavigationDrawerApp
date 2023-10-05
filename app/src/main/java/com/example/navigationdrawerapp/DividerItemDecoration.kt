@@ -33,10 +33,11 @@ class DividerItemDecoration : RecyclerView.ItemDecoration {
             val params = child.getLayoutParams() as RecyclerView.LayoutParams
             val top: Int = child.getBottom() + params.bottomMargin
             val bottom = top + divider!!.intrinsicHeight
-            divider.setBounds(left, top, right, bottom)
-            divider.draw(canvas)
+            //if (child.getVisibility() == View.VISIBLE && child.getId() != -1) {
+                divider.setBounds(left, top, right, bottom)
+                divider.draw(canvas)
+            //}
         }
-
     }
 
     override fun getItemOffsets(outRect : Rect, view : View, parent : RecyclerView, state : RecyclerView.State) {

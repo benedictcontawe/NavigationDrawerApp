@@ -38,6 +38,7 @@ class HeaderViewHolder : BaseViewHolder {
         binder.setPosition(position)
         binder.executePendingBindings()
         binder.textView.setText(model.text)
+        binder.textView.setContentDescription("${model.text} Header ${if(model.isExpand) "Expanded" else "Collapsed"}")
         initializeImage()
         //endregion
         //region Set Listener
@@ -57,13 +58,13 @@ class HeaderViewHolder : BaseViewHolder {
 
     private fun initializeImage() {
         val drawable : Drawable?
-        if (binder.getHolder().isExpand && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (binder.getHolder()?.isExpand == true && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_collapse)
             drawable?.setColorFilter (BlendModeColorFilter(binder.textView.getCurrentTextColor(), BlendMode.SRC_ATOP))
-        } else if (binder.getHolder().isExpand) {
+        } else if (binder.getHolder()?.isExpand == true) {
             drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_collapse)
             drawable?.setColorFilter(binder.textView.getCurrentTextColor(), PorterDuff.Mode.SRC_ATOP)
-        } else if (binder.getHolder().isExpand.not() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        } else if (binder.getHolder()?.isExpand?.not() == true && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_expand)
             drawable?.setColorFilter (BlendModeColorFilter(binder.textView.getCurrentTextColor(), BlendMode.SRC_ATOP))
         } else {

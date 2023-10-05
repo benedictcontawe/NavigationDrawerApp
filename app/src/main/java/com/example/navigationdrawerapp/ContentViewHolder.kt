@@ -27,6 +27,7 @@ class ContentViewHolder : BaseViewHolder {
         binder.setPosition(position)
         binder.executePendingBindings()
         binder.textView.setText(model.text)
+        binder.textView.setContentDescription("${model.text}")
         //endregion
         //region Set Listener
         binder.constraintLayout.setOnClickListener(object : View.OnClickListener {
