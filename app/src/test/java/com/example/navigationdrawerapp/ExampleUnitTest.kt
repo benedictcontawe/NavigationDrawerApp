@@ -24,6 +24,11 @@ class ExampleUnitTest {
     fun contains_Fax() {
         assertEquals(true, "Fax".contains("Fax", true))
     }
+
+    @Test
+    fun contains_FAX() {
+        assertEquals(true, "FAX".contains("Fax", true))
+    }
     @Test
     fun contains_PhoneFax() {
         assertEquals(true, "Phone is fax?".contains("Fax", true))
