@@ -26,7 +26,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun onSetNavigationDrawerEvents() {
-        //binder?.drawerLayout?.openDrawer(GravityCompat.END)
+        //binder?.drawerLayout?.openDrawer(GravityCompat.START)
         binder?.layoutDashboard?.navigationBar?.setOnClickListener(this)
         binder?.layoutSideMenu?.linearLayoutFirst?.setOnClickListener(this)
         binder?.layoutSideMenu?.linearLayoutSecond?.setOnClickListener(this)

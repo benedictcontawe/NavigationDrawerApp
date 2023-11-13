@@ -51,7 +51,7 @@
             android:contentDescription="@string/navigation_bar"
             style="@style/NavigationBar"
             app:layout_constraintTop_toTopOf="@id/guideline_hamburger_top"
-            app:layout_constraintEnd_toEndOf="@id/guideline_hamburger_end" />
+            app:layout_constraintStart_toStartOf="@id/guideline_hamburger_start" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
