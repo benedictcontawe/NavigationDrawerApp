@@ -58,8 +58,8 @@ public class DashboardActivity extends Activity implements View.OnClickListener 
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.navigationBar:
                 drawerLayout.openDrawer(navigationView, true);
                 break;
