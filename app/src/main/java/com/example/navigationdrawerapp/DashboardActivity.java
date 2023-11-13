@@ -13,11 +13,11 @@ import com.google.android.material.navigation.NavigationView;
 
 public class DashboardActivity extends Activity implements View.OnClickListener {
 
-    DrawerLayout drawerLayout;
-    ImageView navigationBar,iv_logout;
-    LinearLayout ll_First,ll_Second,ll_Third,ll_Fourth,ll_Fifth,ll_Sixth,ll_Seventh;
-    NavigationView navigationView;
-    TextView tv_logout;
+    private DrawerLayout drawerLayout;
+    private ImageView navigationBar,iv_logout;
+    private LinearLayout ll_First,ll_Second,ll_Third,ll_Fourth,ll_Fifth,ll_Sixth,ll_Seventh;
+    private NavigationView navigationView;
+    private TextView tv_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class DashboardActivity extends Activity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.navigationBar:
                 drawerLayout.openDrawer(navigationView, true);
                 break;
