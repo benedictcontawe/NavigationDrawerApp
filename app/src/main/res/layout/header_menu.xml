@@ -5,16 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom"
-        android:orientation="vertical"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+        style="@style/ConstraintLayout" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#00539f"
+            style="@style/HeaderMenuColor"
             app:layout_constraintDimensionRatio="2:1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,8 +70,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:maxLines="2"
-                android:textColor="#FFF"
                 android:textSize="22sp"
+                style="@style/TextStyle"
                 app:layout_constraintStart_toStartOf="@id/margin_start_percentage"
                 app:layout_constraintBottom_toBottomOf="@id/guideline_text_bottom"
                 tools:text="Joanna Smith"/>
@@ -100,9 +96,9 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textColor="#FFF"
                 android:textSize="15sp"
                 android:text="@string/logout"
+                style="@style/TextStyle"
                 app:layout_constraintEnd_toEndOf="@id/margin_end_percentage"
                 app:layout_constraintBottom_toBottomOf="@id/guideline_text_bottom"/>
 

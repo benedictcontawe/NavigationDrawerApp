@@ -4,10 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#000">
+        style="@style/ConstraintLayout" >
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_hamburger_top"
@@ -34,8 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textColor="#FF0000"
             android:textSize="20sp"
+            style="@style/TextStyle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,17 +41,15 @@
         <View
             android:layout_width="1dp"
             android:layout_height="0dp"
-            android:background="#FF0000"
+            style="@style/LineColor"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_hamburger_end"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/navigation_bar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
             android:contentDescription="@string/navigation_bar"
-            android:src="@drawable/ic_navigation_bar_white"
+            style="@style/NavigationBar"
             app:layout_constraintTop_toTopOf="@id/guideline_hamburger_top"
             app:layout_constraintEnd_toEndOf="@id/guideline_hamburger_end" />
 
