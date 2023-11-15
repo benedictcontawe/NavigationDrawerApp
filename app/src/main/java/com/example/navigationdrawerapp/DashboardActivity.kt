@@ -27,7 +27,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener, DrawerListe
         binder?.setLifecycleOwner(this@DashboardActivity)
         super.onCreate(savedInstanceState)
         onSetNavigationDrawerEvents()
-        setRecylerView()
+        setRecyclerView()
         getOnBackPressedDispatcher().addCallback(this@DashboardActivity, getHandleOnBackPressed())
     }
 
@@ -37,7 +37,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener, DrawerListe
         binder?.layoutSideMenu?.headerDashboard?.textViewLogout?.setOnClickListener(this@DashboardActivity)
     }
 
-    private fun setRecylerView() {
+    private fun setRecyclerView() {
         adapter = DrawerAdapter(this)
         binder?.layoutSideMenu?.recyclerView?.setLayoutManager(CustomLinearLayoutManager(this@DashboardActivity, LinearLayout.VERTICAL, false))
         binder?.layoutSideMenu?.recyclerView?.setAdapter(adapter)
