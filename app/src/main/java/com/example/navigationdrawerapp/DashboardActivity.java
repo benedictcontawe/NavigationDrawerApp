@@ -1,7 +1,6 @@
 package com.example.navigationdrawerapp;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,19 +19,23 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
     private final String TAG = DashboardActivity.class.getSimpleName();
 
+    @Nullable
     private DashboardBinder binder;
     private DashboardViewModel viewModel;
     private DrawerAdapter adapter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.d(TAG,"onCreate");
-        binder = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         viewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
-        binder.setViewModel(viewModel);
-        binder.setLifecycleOwner(this);
+        binder = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
+        if (binder != null) {
+            binder.setViewModel(viewModel);
+            binder.setLifecycleOwner(this);
+        }
         Log.d(TAG,"onCreate");
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_dashboard);
         Log.d(TAG,"super.onCreate");
         onSetNavigationDrawerEvents();
         setRecyclerView();
@@ -73,7 +76,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         } );
         */
         binder.layoutSideMenu.recyclerView.addItemDecoration (
-            new DividerItemDecoration (ContextCompat.getColor(getBaseContext(),R.color.purple_500), 1)
+                new DividerItemDecoration (ContextCompat.getColor(getBaseContext(),R.color.purple_500), 1)
         );
         adapter.setItems(viewModel.getList());
     }

@@ -1,7 +1,5 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
 }
 
 android {
@@ -10,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.navigationdrawerapp"
-        minSdk = 15
+        minSdk = 16
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -31,18 +29,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
     buildFeatures {
         dataBinding = true
-        viewBinding = true
+        viewBinding = false
     }
 }
 
 dependencies {
     //region Android UI Layout Library and backward-compatible Library(Legacy)
-    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
