@@ -2,6 +2,7 @@ package com.example.navigationdrawerapp;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.navigationdrawerapp.databinding.DashboardBinder;
 
@@ -24,13 +26,18 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        Log.d(TAG,"onCreate");
         binder = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
+        viewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         binder.setViewModel(viewModel);
         binder.setLifecycleOwner(this);
+        Log.d(TAG,"onCreate");
         super.onCreate(savedInstanceState);
+        Log.d(TAG,"super.onCreate");
         onSetNavigationDrawerEvents();
-        setRecylerView();
+        setRecyclerView();
         getOnBackPressedDispatcher().addCallback(this, getHandleOnBackPressed());
+        Log.d(TAG,"onCreate done");
     }
 
     private void onSetNavigationDrawerEvents() {
@@ -39,7 +46,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         binder.layoutSideMenu.headerDashboard.textViewLogout.setOnClickListener(this);
     }
 
-    private void setRecylerView() {
+    private void setRecyclerView() {
         adapter = new DrawerAdapter(this);
         binder.layoutSideMenu.recyclerView.setLayoutManager(new CustomLinearLayoutManager(this, LinearLayout.VERTICAL, false));
         binder.layoutSideMenu.recyclerView.setAdapter(adapter);
@@ -118,7 +125,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             }
         };
     }
-
+    /*
     @Override
     public void onBackPressed() {
         if (binder.drawerLayout.isDrawerOpen(binder.navigationView) == true) {
@@ -127,7 +134,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             super.onBackPressed();
         }
     }
-
+    */
     @Override
     protected void onDestroy() {
         super.onDestroy();

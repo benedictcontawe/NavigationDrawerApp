@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.example.navigationdrawerapp.databinding.ContentBinder;
 
-public class ContentViewHolder extends BaseViewHolder{
+public class ContentViewHolder extends BaseViewHolder {
 
     private final String TAG = ContentViewHolder.class.getSimpleName();
 
