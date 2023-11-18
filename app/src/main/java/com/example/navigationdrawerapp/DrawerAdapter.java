@@ -77,6 +77,30 @@ public class DrawerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
+    public int getLastPosition() {
+        return list.size() - 1;
+    }
+
+    public int getLastContentPosition(final int position) {
+        for (int index = position; index < getItemCount(); index++) {
+            if(getItem(index).getHeader() && index != position) {
+                return index - 1 ;
+            }
+        }
+        return getLastPosition();
+    }
+
+    public boolean isLastHeader(int position) {
+        boolean result = true;
+        for (int index = position; index < getItemCount(); index++) {
+            if (getItem(index).getHeader() && index != position) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
     public void setItems(List<DrawerModel> items) {
         list.clear();
         list.addAll(items);
@@ -93,6 +117,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     public void setExpand(DrawerModel model, int position) {
+        list.set(position, model);
         for (int index = position; index < getItemCount(); index++) {
             if (getItem(index).getHeader() && index != position) {
                 break;
@@ -107,6 +132,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     public void setCompress(DrawerModel model, int position) {
+        list.set(position, model);
         for (int index = position; index < getItemCount(); index++) {
             if (getItem(index).getHeader() && index != position) {
                 break;

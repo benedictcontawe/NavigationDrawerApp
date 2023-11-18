@@ -76,7 +76,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         } );
         */
         binder.layoutSideMenu.recyclerView.addItemDecoration (
-                new DividerItemDecoration (ContextCompat.getColor(getBaseContext(),R.color.purple_500), 1)
+            new DividerItemDecoration (ContextCompat.getColor(getBaseContext(),R.color.purple_500), 1)
         );
         adapter.setItems(viewModel.getList());
     }
@@ -109,6 +109,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onExpand(DrawerModel model, int position) {
         adapter.setExpand(model, position);
+        if (adapter.isLastHeader(position)) {
+            binder.layoutSideMenu.recyclerView.smoothScrollToPosition(adapter.getLastPosition());
+        }
     }
 
     @Override

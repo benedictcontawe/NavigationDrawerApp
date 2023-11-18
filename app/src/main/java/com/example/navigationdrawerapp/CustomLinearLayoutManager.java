@@ -42,8 +42,7 @@ public class CustomLinearLayoutManager extends LinearLayoutManager {
             @Nullable
             @Override
             public PointF computeScrollVectorForPosition(int targetPosition) {
-                //return super.computeScrollVectorForPosition(targetPosition);
-                return this.computeScrollVectorForPosition(targetPosition);
+                return super.computeScrollVectorForPosition(targetPosition);
             }
 
             @Override
