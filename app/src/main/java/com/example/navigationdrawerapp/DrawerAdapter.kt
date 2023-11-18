@@ -65,6 +65,29 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
             super.getItemViewType(position)
         }
     }
+    public fun getLastPosition(): Int {
+        return list.size - 1
+    }
+
+    public fun getLastContentPosition(position: Int): Int {
+        for (index in position until itemCount) {
+            if (getItem(index).isHeader && index != position) {
+                return index - 1
+            }
+        }
+        return getLastPosition()
+    }
+
+    public fun isLastHeader(position: Int): Boolean {
+        var result = true
+        for (index in position until itemCount) {
+            if (getItem(index).isHeader && index != position) {
+                result = false
+                break
+            }
+        }
+        return result
+    }
 
     public fun setItems(items : List<DrawerModel>) {
         list.clear()
@@ -81,6 +104,7 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
     }
 
     public fun setExpand(model : DrawerModel, position : Int) {
+        list.set(position, model)
         for (index in position ..< getItemCount()) {
             if (getItem(index).isHeader && index != position) {
                 break
@@ -95,6 +119,7 @@ class DrawerAdapter : RecyclerView.Adapter<BaseViewHolder> {
     }
 
     public fun setCompress(model : DrawerModel, position : Int) {
+        list.set(position, model)
         for (index in position ..< getItemCount()) {
             if (getItem(index).isHeader && index != position) {
                 break

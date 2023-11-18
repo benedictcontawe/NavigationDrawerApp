@@ -100,6 +100,9 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener, DrawerListe
 
     override fun onExpand(model : DrawerModel, position : Int) {
         adapter?.setExpand(model, position)
+        if (adapter?.isLastHeader(position) == true) {
+            binder?.layoutSideMenu?.recyclerView?.smoothScrollToPosition(adapter?.getLastPosition() ?: 0)
+        }
     }
 
     override fun onCompress(model : DrawerModel, position : Int) {
