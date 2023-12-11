@@ -1,5 +1,7 @@
 package com.example.navigationdrawerapp
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class DashboardViewModel : ViewModel {
@@ -8,9 +10,11 @@ class DashboardViewModel : ViewModel {
         private val TAG = DashboardViewModel::class.java.getSimpleName()
     }
 
+    private val liveList : MutableLiveData<List<DrawerModel>>
     private val list : MutableList<DrawerModel>
 
     constructor() {
+        liveList = MutableLiveData<List<DrawerModel>>(listOf())
         list = mutableListOf<DrawerModel>()
         setList()
     }
@@ -42,10 +46,56 @@ class DashboardViewModel : ViewModel {
         list.add(DrawerModel("X", isHeader = false, isExpand = true, icon = R.drawable.ic_blender))
         list.add(DrawerModel("Y", isHeader = true, isExpand = true, icon = R.drawable.ic_umbrella))
         list.add(DrawerModel("Z", isHeader = false, isExpand = true, icon = R.drawable.ic_wind_power))
+        liveList.setValue(emptyList<DrawerModel>())
+        liveList.setValue(list)
     }
 
-    public fun getList() : List<DrawerModel> {
-        return list
+    public fun getLiveList() : LiveData<List<DrawerModel>> {
+        return liveList
+    }
+
+    private fun getItem(position : Int) : DrawerModel {
+        return list.get(position)
+    }
+
+    public fun onHeaderCellClick(position : Int, model : DrawerModel) {
+        if (model.isHeader && model.isExpand) {
+            setCompress(model, position)
+        } else if (model.isHeader && model.isExpand.not()) {
+            setExpand(model, position)
+        }
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    private fun setExpand(model : DrawerModel, position : Int) {
+        list.set(position, model)
+        for (index in position ..< list.size) {
+            if (getItem(index).isHeader && index != position) {
+                break
+            } else if (!getItem(index).isHeader) {
+                getItem(index).isExpand = true
+            } else {
+                getItem(index).isExpand = true
+            }
+        }
+        liveList.setValue(emptyList<DrawerModel>())
+        liveList.setValue(list)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    private fun setCompress(model : DrawerModel, position : Int) {
+        list.set(position, model)
+        for (index in position ..< list.size) {
+            if (getItem(index).isHeader && index != position) {
+                break
+            } else if (!getItem(index).isHeader) {
+                getItem(index).isExpand = false
+            } else {
+                getItem(index).isExpand = false
+            }
+        }
+        liveList.setValue(emptyList<DrawerModel>())
+        liveList.setValue(list)
     }
 
     override fun onCleared() {

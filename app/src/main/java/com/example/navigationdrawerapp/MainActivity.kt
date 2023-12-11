@@ -15,7 +15,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
@@ -31,6 +35,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -50,7 +56,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val viewModel : DashboardViewModel = viewModel { DashboardViewModel() }
-            val list : List<DrawerModel> = viewModel.getList()
+            val list : List<DrawerModel> by viewModel.getLiveList().observeAsState( listOf<DrawerModel>() )
             val coroutineScope = rememberCoroutineScope()
             //val navController : NavHostController = rememberNavController()
             val drawerState : DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -62,7 +68,10 @@ class MainActivity : ComponentActivity() {
                             DrawerHeaderComposable()
                             DrawerBodyComposable (
                                 models = list,
-                                onCellClick = { model ->
+                                onHeaderCellClick = {  index, model ->
+                                    viewModel.onHeaderCellClick(model, index)
+                                },
+                                onContentCellClick = { model ->
                                     coroutineScope.launch {
                                         Toast.makeText(getBaseContext(), model.text, Toast.LENGTH_SHORT).show()
                                         drawerState.close()
@@ -80,7 +89,9 @@ class MainActivity : ComponentActivity() {
                         } }
                     ) { paddingValues ->
                         Surface (
-                            modifier = Modifier.fillMaxSize().padding(paddingValues),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(paddingValues),
                             color = MaterialTheme.colorScheme.background
                         ) {
                             Text (
@@ -126,30 +137,81 @@ class MainActivity : ComponentActivity() {
         models : List<DrawerModel>,
         modifier : Modifier = Modifier,
         modelTextStyle : TextStyle = TextStyle(fontSize = 18.sp),
-        onCellClick : (DrawerModel) -> Unit) {
+        onHeaderCellClick : (DrawerModel, Int) -> Unit,
+        onContentCellClick : (DrawerModel) -> Unit,
+    ) {
         LazyColumn(modifier = modifier, content = {
-            items(models) { model ->
-                Row (
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
-                            onCellClick(model)
-                        }
-                        .padding(16.dp)
-                ) {
-                    Icon (
-                        contentDescription = null,
-                        painter  = painterResource(id = model.icon)
-                    )
-                    Spacer( modifier = Modifier.width(16.dp) )
-                    Text (
-                        text = model.text,
-                        style = modelTextStyle,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-
+            itemsIndexed(models) { index : Int, model : DrawerModel ->
+                if (model.isHeader) HeaderCellComposable (
+                    model,
+                    modelTextStyle,
+                    { onHeaderCellClick(model, index,) }
+                )
+                else if (model.isHeader.not() && model.isExpand) ContentCellComposable (
+                    model,
+                    modelTextStyle,
+                    { onContentCellClick(model) }
+                )
             }
         } )
     }
+
+    @Composable
+    private fun HeaderCellComposable (
+        model : DrawerModel,
+        modelTextStyle : TextStyle,
+        onCellClick : (DrawerModel) -> Unit
+    ) {
+        Row (
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    onCellClick(model)
+                }
+                .padding(16.dp)
+        ) {
+            Icon (
+                contentDescription = null,
+                painter  = painterResource(id = model.icon)
+            )
+            Spacer( modifier = Modifier.width(16.dp) )
+            Text (
+                text = model.text,
+                style = modelTextStyle,
+                modifier = Modifier.weight(1f)
+            )
+            Icon (
+                imageVector = if(model.isExpand) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                contentDescription = null
+            )
+        }
+    }
+
+    @Composable
+    private fun ContentCellComposable (
+        model : DrawerModel,
+        modelTextStyle : TextStyle,
+        onCellClick : (DrawerModel) -> Unit
+    ) {
+        Row (
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    onCellClick(model)
+                }
+                .padding(16.dp)
+        ) {
+            Icon (
+                contentDescription = null,
+                painter  = painterResource(id = model.icon)
+            )
+            Spacer( modifier = Modifier.width(16.dp) )
+            Text (
+                text = model.text,
+                style = modelTextStyle,
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+
 }
