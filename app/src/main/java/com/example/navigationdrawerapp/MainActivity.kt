@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
+        installSplashScreen()//.setKeepOnScreenCondition { true }
         setContent {
             val viewModel : DashboardViewModel = viewModel { DashboardViewModel() }
             val list : List<DrawerModel> by viewModel.getLiveList().observeAsState( listOf<DrawerModel>() )
