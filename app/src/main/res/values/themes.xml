@@ -11,4 +11,15 @@
     <style name="Theme.NavigationDrawerApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.NavigationDrawerApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.Custom.Splash" parent="Theme.SplashScreen">
+    <!--<item name="windowSplashScreenBackground">@color/white</item>-->
+    <!--<item name="android:windowDisablePreview">true</item>-->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/inset_splash</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.NavigationDrawerApp</item>
+        <!-- Status bar and Nav bar configs -->
+    <!--<item name="android:statusBarColor" >@color/white</item>-->
+    <!--<item name="android:navigationBarColor">@color/white</item>-->
+    </style>
 </resources>

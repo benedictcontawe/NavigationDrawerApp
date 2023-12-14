@@ -66,10 +66,9 @@ class DashboardViewModel : ViewModel {
         }
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     private fun setExpand(model : DrawerModel, position : Int) {
         list.set(position, model)
-        for (index in position ..< list.size) {
+        for (index in position until list.size) {
             if (getItem(index).isHeader && index != position) {
                 break
             } else if (!getItem(index).isHeader) {
@@ -82,10 +81,9 @@ class DashboardViewModel : ViewModel {
         liveList.setValue(list)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     private fun setCompress(model : DrawerModel, position : Int) {
         list.set(position, model)
-        for (index in position ..< list.size) {
+        for (index in position until list.size) {
             if (getItem(index).isHeader && index != position) {
                 break
             } else if (!getItem(index).isHeader) {
