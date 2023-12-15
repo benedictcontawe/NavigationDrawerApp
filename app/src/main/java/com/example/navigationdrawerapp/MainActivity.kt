@@ -35,6 +35,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,6 +45,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.navigationdrawerapp.ui.theme.NavigationDrawerAppTheme
 import kotlinx.coroutines.launch
 
@@ -57,7 +63,7 @@ class MainActivity : ComponentActivity() {
             val viewModel : DashboardViewModel = viewModel { DashboardViewModel() }
             val list : List<DrawerModel> by viewModel.getLiveList().observeAsState( listOf<DrawerModel>() )
             val coroutineScope = rememberCoroutineScope()
-            //val navController : NavHostController = rememberNavController()
+            val navController : NavHostController = rememberNavController()
             val drawerState : DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             NavigationDrawerAppTheme {
                 ModalNavigationDrawer (
@@ -69,23 +75,23 @@ class MainActivity : ComponentActivity() {
                                 models = list,
                                 onHeaderCellClick = {  index, model ->
                                     viewModel.onHeaderCellClick(model, index)
-                                },
-                                onContentCellClick = { model ->
-                                    coroutineScope.launch {
-                                        Toast.makeText(getBaseContext(), model.text, Toast.LENGTH_SHORT).show()
-                                        drawerState.close()
-                                    }
-                                }
+                                }, onContentCellClick = { model -> coroutineScope.launch {
+                                    navController.navigate("${Constants.KEY_CONTENT}/${model.text}")
+                                    Toast.makeText(getBaseContext(), model.text, Toast.LENGTH_SHORT).show()
+                                    drawerState.close()
+                                } }
                             )
                         }
                     }
                 ) {
                     Scaffold (
-                        topBar = { AppBarComposable {
-                            coroutineScope.launch {
-                                drawerState.open()
+                        topBar = {
+                            AppBarComposable {
+                                coroutineScope.launch {
+                                    drawerState.open()
+                                }
                             }
-                        } }
+                        }
                     ) { paddingValues ->
                         Surface (
                             modifier = Modifier
@@ -93,10 +99,7 @@ class MainActivity : ComponentActivity() {
                                 .padding(paddingValues),
                             color = MaterialTheme.colorScheme.background
                         ) {
-                            Text (
-                                text = stringResource( id = R.string.app_name ),
-                                textAlign = TextAlign.Center,
-                            )
+                            NavHostComposable(navController = navController)
                         }
                     }
                 }
@@ -136,8 +139,7 @@ class MainActivity : ComponentActivity() {
         models : List<DrawerModel>,
         modifier : Modifier = Modifier,
         modelTextStyle : TextStyle = TextStyle(fontSize = 18.sp),
-        onHeaderCellClick : (DrawerModel, Int) -> Unit,
-        onContentCellClick : (DrawerModel) -> Unit,
+        onHeaderCellClick : (DrawerModel, Int) -> Unit, onContentCellClick : (DrawerModel) -> Unit,
     ) {
         LazyColumn(modifier = modifier, content = {
             itemsIndexed(models) { index : Int, model : DrawerModel ->
@@ -156,11 +158,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun HeaderCellComposable (
-        model : DrawerModel,
-        modelTextStyle : TextStyle,
-        onCellClick : (DrawerModel) -> Unit
-    ) {
+    private fun HeaderCellComposable (model : DrawerModel, modelTextStyle : TextStyle, onCellClick : (DrawerModel) -> Unit) {
         Row (
             modifier = Modifier
                 .fillMaxWidth()
@@ -187,11 +185,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun ContentCellComposable (
-        model : DrawerModel,
-        modelTextStyle : TextStyle,
-        onCellClick : (DrawerModel) -> Unit
-    ) {
+    private fun ContentCellComposable (model : DrawerModel, modelTextStyle : TextStyle, onCellClick : (DrawerModel) -> Unit) {
         Row (
             modifier = Modifier
                 .fillMaxWidth()
@@ -213,4 +207,41 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Composable
+    private fun NavHostComposable(navController : NavHostController) {
+        NavHost(navController = navController, startDestination  = "main") {
+            composable(route = Constants.ROUTE_MAIN) { backStackEntry : NavBackStackEntry ->
+                Box (
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text (
+                        text = stringResource( id = R.string.app_name ),
+                        textAlign = TextAlign.Center,
+                    )
+                }
+                /*
+                LaunchedEffect(Unit) {
+                    navController.navigate(route = Constants.ROUTE_MAIN) {
+                        popUpTo(route = "splash") {
+                            inclusive = true
+                        }
+                    }
+                }
+                */
+            }
+            composable(route = Constants.ROUTE_CONTENT) { backStackEntry : NavBackStackEntry ->
+                val content = backStackEntry.arguments?.getString(Constants.KEY_CONTENT)
+                Box (
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text (
+                        text = "${stringResource( id = R.string.content )} $content",
+                        textAlign = TextAlign.Center,
+                    )
+                }
+            }
+        }
+    }
 }

@@ -4,7 +4,7 @@ public data class DrawerModel (
     val text : String,
     val isHeader : Boolean,
     var isExpand : Boolean,
-    var icon : Int,
+    val icon : Int,
 ) {
 
     override fun toString() : String {
