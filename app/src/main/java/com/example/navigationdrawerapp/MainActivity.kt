@@ -91,17 +91,16 @@ class MainActivity : ComponentActivity() {
                                     drawerState.open()
                                 }
                             }
+                        },
+                        content = { paddingValues ->
+                            Surface (
+                                modifier = Modifier.fillMaxSize().padding(paddingValues),
+                                color = MaterialTheme.colorScheme.background
+                            ) {
+                                NavHostComposable(navController = navController)
+                            }
                         }
-                    ) { paddingValues ->
-                        Surface (
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(paddingValues),
-                            color = MaterialTheme.colorScheme.background
-                        ) {
-                            NavHostComposable(navController = navController)
-                        }
-                    }
+                    )
                 }
             }
         }
