@@ -1,7 +1,6 @@
 package com.example.navigationdrawerapp
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
@@ -77,7 +76,6 @@ class MainActivity : ComponentActivity() {
                                     viewModel.onHeaderCellClick(model, index)
                                 }, onContentCellClick = { model -> coroutineScope.launch {
                                     navController.navigate("${Constants.KEY_CONTENT}/${model.text}")
-                                    Toast.makeText(getBaseContext(), model.text, Toast.LENGTH_SHORT).show()
                                     drawerState.close()
                                 } }
                             )
@@ -86,12 +84,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Scaffold (
                         topBar = {
-                            AppBarComposable {
-                                coroutineScope.launch {
-                                    drawerState.open()
-                                }
-                            }
-                        },
+                            AppBarComposable { coroutineScope.launch {
+                                drawerState.open()
+                            } } },
                         content = { paddingValues ->
                             Surface (
                                 modifier = Modifier.fillMaxSize().padding(paddingValues),
@@ -126,9 +121,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun DrawerHeaderComposable() {
-        Box (modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 64.dp,)) {
+        Box (modifier = Modifier.fillMaxWidth().padding(vertical = 64.dp,)) {
             Text(text = "Header", fontSize = 60.sp)
         }
     }
@@ -159,8 +152,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun HeaderCellComposable (model : DrawerModel, modelTextStyle : TextStyle, onCellClick : (DrawerModel) -> Unit) {
         Row (
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
                 .clickable {
                     onCellClick(model)
                 }
@@ -186,8 +178,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun ContentCellComposable (model : DrawerModel, modelTextStyle : TextStyle, onCellClick : (DrawerModel) -> Unit) {
         Row (
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
                 .clickable {
                     onCellClick(model)
                 }
