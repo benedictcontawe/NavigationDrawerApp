@@ -1,5 +1,8 @@
 package com.example.navigationdrawerapp
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 public data class DrawerModel (
     val text : String,
     val isHeader : Boolean,
@@ -7,7 +10,11 @@ public data class DrawerModel (
     val icon : Int,
 ) {
 
+    companion object {
+        private val TAG = DrawerModel::class.java.getSimpleName()
+    }
+
     override fun toString() : String {
-        return "DrawerModel text $text isHeader $isHeader isExpand $isExpand" ?: super.toString()
+        return "$TAG text $text isHeader $isHeader isExpand $isExpand" ?: super.toString()
     }
 }
