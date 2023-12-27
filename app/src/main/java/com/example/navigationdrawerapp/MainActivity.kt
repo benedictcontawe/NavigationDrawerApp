@@ -134,18 +134,22 @@ class MainActivity : ComponentActivity() {
         onHeaderCellClick : (DrawerModel, Int) -> Unit, onContentCellClick : (DrawerModel) -> Unit,
     ) {
         LazyColumn(modifier = modifier, content = {
-            itemsIndexed(models) { index : Int, model : DrawerModel ->
-                if (model.isHeader) HeaderCellComposable (
-                    model,
-                    modelTextStyle,
-                    { onHeaderCellClick(model, index,) }
-                )
-                else if (model.isHeader.not() && model.isExpand) ContentCellComposable (
-                    model,
-                    modelTextStyle,
-                    { onContentCellClick(model) }
-                )
-            }
+            itemsIndexed (
+                items = models,
+                itemContent = { index : Int, model : DrawerModel ->
+                    if (model.isHeader) HeaderCellComposable (
+                        model,
+                        modelTextStyle,
+                        { onHeaderCellClick(model, index,) }
+                    )
+                    else if (model.isHeader.not() && model.isExpand) ContentCellComposable (
+                        model,
+                        modelTextStyle,
+                        { onContentCellClick(model) }
+                    )
+                },
+                key = null
+            )
         } )
     }
 
@@ -199,7 +203,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun NavHostComposable(navController : NavHostController) {
-        NavHost(navController = navController, startDestination  = "main") {
+        NavHost(navController = navController, startDestination  = Constants.ROUTE_MAIN) {
             composable(route = Constants.ROUTE_MAIN) { backStackEntry : NavBackStackEntry ->
                 Box (
                     modifier = Modifier.fillMaxSize(),
